@@ -16,5 +16,8 @@
     "eslint-plugin-import": "^2.11.0",
     "flow-bin": "^0.72.0",
     "prettier-eslint": "^8.8.1"
+  },
+  "dependencies": {
+    "sleep": "^5.1.1"
   }
 }

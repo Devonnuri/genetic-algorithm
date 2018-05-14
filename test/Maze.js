@@ -56,4 +56,24 @@ export default class Maze {
   reset() {
     this.currentPos = this.start;
   }
+
+  print() {
+    for (let i = 0; i < this.HEIGHT; i++) {
+      let result = '';
+      for (let j = 0; j < this.WIDTH; j++) {
+        if (this.currentPos[1] === i && this.currentPos[0] === j) {
+          result += '▲';
+        } else if (this.map[i][j] === this.EMPTY) {
+          result += '□';
+        } else if (this.map[i][j] === this.WALL) {
+          result += '■';
+        } else if (this.map[i][j] === this.START) {
+          result += '①';
+        } else if (this.map[i][j] === this.END) {
+          result += '②';
+        }
+      }
+      console.log(result);
+    }
+  }
 }
