@@ -1,0 +1,12 @@
+{
+    "extends": "airbnb-base",
+    "parser": "babel-eslint",
+    "rules": {
+        "no-console": "off",
+        "linebreak-style": "off",
+        "class-methods-use-this": "off",
+        "no-unused-vars": "warn",
+        "no-plusplus": "off",
+        "no-mixed-operators": "off"
+    }
+}

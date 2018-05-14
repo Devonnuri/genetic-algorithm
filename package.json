@@ -2,5 +2,19 @@
   "name": "genetic-algorithm",
   "version": "1.0.0",
   "main": "src/index.js",
-  "license": "MIT"
+  "scripts": {
+    "test": "nodemon --exec babel-node -- ./test/index.js",
+    "build": "babel src/ --out-dir build/"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-flow": "^6.23.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "flow-bin": "^0.72.0",
+    "prettier-eslint": "^8.8.1"
+  }
 }
