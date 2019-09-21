@@ -1,5 +1,3 @@
-import { msleep } from 'sleep';
-
 import GenePool from '../src/GenePool';
 import Maze from './Maze';
 
@@ -18,6 +16,8 @@ const map = [
 const pool = new GenePool('MazePool', 300, 2048, { min: 0, max: 3 });
 const maze = new Maze(map);
 
+const sleep = ms => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+
 maze.init();
 process.stdout.write('\x1B[?25l');
 
@@ -33,13 +33,13 @@ pool.setFitnessFunction((data) => {
 }, true);
 
 pool.initialize();
-for (let i = 0; i < 3000; i++) {
+for (let i = 0; i < 1000; i++) {
   pool.nextGeneration();
 }
 
 maze.reset();
 pool.getBestResult().forEach((dir, index) => {
-  msleep(50);
+  sleep(100);
   process.stdout.write('\x1Bc');
   console.log(`Step: ${index}\n`);
   maze.print();
