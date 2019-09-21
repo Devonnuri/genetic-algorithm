@@ -1,5 +1,5 @@
-import GenePool from '../src/GenePool';
-import Maze from './Maze';
+import GenePool from "../src/GenePool";
+import Maze from "./Maze";
 
 const map = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -10,19 +10,20 @@ const map = [
   [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
   [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
   [1, 0, 0, 0, 1, 0, 0, 0, 1, 0],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 3]
 ];
 
-const pool = new GenePool('MazePool', 300, 2048, { min: 0, max: 3 });
+const pool = new GenePool("MazePool", 300, 2048, { min: 0, max: 3 });
 const maze = new Maze(map);
 
-const sleep = ms => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+const sleep = (ms: number) =>
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 
 maze.init();
-process.stdout.write('\x1B[?25l');
+process.stdout.write("\x1B[?25l");
 
 pool.logger(true);
-pool.setFitnessFunction((data) => {
+pool.setFitnessFunction(data => {
   maze.reset();
   let moveCount = 0;
   for (let i = 0; i < data.length; i++) {
@@ -40,11 +41,11 @@ for (let i = 0; i < 1000; i++) {
 maze.reset();
 pool.getBestResult().forEach((dir, index) => {
   sleep(100);
-  process.stdout.write('\x1Bc');
+  process.stdout.write("\x1Bc");
   console.log(`Step: ${index}\n`);
   maze.print();
   if (maze.move(dir)) {
     process.exit(0);
-    process.stdout.write('\x1B[?25h');
+    process.stdout.write("\x1B[?25h");
   }
 });
